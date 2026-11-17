@@ -1,0 +1,44 @@
+# Raven Cleaner - English (default)
+# Located in world/serverconfig/ravencleaner/lang/en_us.toml after first start.
+# Edit this file and run /cleaner reload. Save as UTF-8.
+# Colors: &0 black, &1 dark blue, &2 dark green, &3 dark aqua,
+# &4 dark red, &5 dark purple, &6 gold, &7 gray, &8 dark gray,
+# &9 blue, &a green, &b aqua, &c red, &d light purple, &e yellow, &f white.
+# Styles: &l bold, &o italic, &n underline, &m strikethrough, &k obfuscated, &r reset.
+# HEX: &#9B30FF  | Gradient: <gradient:#9B30FF:#00E5FF>Text</gradient>
+# Placeholders: {prefix}, {time}, {seconds}, {mode}, {removed_items},
+# {removed_units}, {removed_mobs}, {removed_vehicles}, {removed_total},
+# {elapsed_ms}, {items}, {mobs}, {vehicles}, {next_seconds}, {error}.
+# No need to escape & codes in TOML strings.
+
+prefix = "&l<gradient:#9B30FF:#00E5FF>[Raven Cleaner]</gradient>&r "
+countdown = "{prefix}&7Ground cleanup in &e{time}&7! Pick up your items."
+countdownFinal = "{prefix}&c&lCleanup in {seconds}..."
+startedAutomatic = "{prefix}&dAutomatic cleanup started."
+startedManual = "{prefix}&bManual cleanup started."
+startedEmergency = "{prefix}&c&lWARNING! &r&cToo many item drops! Emergency cleanup started."
+startedOverload = "{prefix}&c&lMOB OVERLOAD! &r&cCleaning excessive mob types in chunks."
+finished = "{prefix}&aCleanup completed! &f{removed_items} drops (&e{removed_units} items&f), &e{removed_mobs} mobs&f, &b{removed_vehicles} vehicles&f. Total: &b{removed_total}&f. &8({elapsed_ms} ms)"
+failed = "{prefix}&cCleanup stopped for safety: &f{error}"
+status = "{prefix}&7Next cleanup in &e{time}&7. Mode: &b{mode}&7."
+analysis = "{prefix}&7Eligible now: &e{items} drops&7, &e{mobs} mobs&7, &e{vehicles} vehicles&7."
+reloaded = "{prefix}&aConfiguration and language reloaded successfully."
+reloadError = "{prefix}&cReload failed: &f{error}"
+paused = "{prefix}&eAutomatic cleanup paused (emergency safeguards stay enabled)."
+resumed = "{prefix}&aAutomatic cleanup resumed."
+alreadyRunning = "{prefix}&cCleanup unavailable, another job is active, or protected chunks cannot be verified."
+modeManual = "manual"
+modeAutomatic = "automatic"
+modeEmergency = "emergency"
+modeOverload = "mob overload"
+minute = "minute"
+minutes = "minutes"
+second = "second"
+seconds = "seconds"
+
+# TAB integration: status text can use TAB-supported & color codes.
+# These keys are also used by scoreboard placeholders, not just in chat.
+tabStatusActive = "&aActive"
+tabStatusPaused = "&ePaused"
+tabStatusRunning = "&bCleaning"
+tabStatusDisabled = "&cDisabled"

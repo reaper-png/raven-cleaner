@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="MIT"
+[[mods]]
+modId="ravencleaner"
+version="0.2.1"
+displayName="Raven Cleaner"
+description='''Server-side cleanup for drops, distant mobs and vehicles, plus per-chunk overload safeguards.'''
+[[dependencies.ravencleaner]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="SERVER"
+[[dependencies.ravencleaner]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.21.2)"
+ordering="NONE"
+side="SERVER"
+[[dependencies.ravencleaner]]
+modId="ftbchunks"
+type="required"
+versionRange="[2101,)"
+ordering="AFTER"
+side="SERVER"

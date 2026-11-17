@@ -1,0 +1,134 @@
+# =============================================================================
+# RAVEN CLEANER 0.2.1 - SERVER CONFIGURATION (NeoForge 1.21.1)
+# Automatically generated at world/serverconfig/ravencleaner.toml
+# Change values, then execute /cleaner reload. Comments start with #.
+# All configuration keys use English. Language files are in:
+# world/serverconfig/ravencleaner/lang/en_us.toml and pt_br.toml
+# =============================================================================
+# SAFETY (hard-coded rules):
+#  - Dropped items CAN be removed in claimed/player chunks (mob-trap protection).
+#  - Regular mobs and vehicles are NOT removed from claimed FTB Chunks.
+#  - Per-chunk mob overload may bypass claims by explicit config below.
+#  - Named mobs, tamed mobs/pets, villagers, bosses, persistent mobs,
+#    NPCs and entities from OTHER MODS are NEVER removed as mobs.
+#  - Only already-loaded entities are scanned. NO chunk is force-loaded.
+#  - Failed FTB claim checks block regular mob/vehicle cleanup, not item cleanup.
+#
+# FORMATTING (edit the language files, not this config):
+#  &0 black, &1 dark blue, &2 dark green, &3 dark aqua, &4 dark red,
+#  &5 dark purple, &6 gold, &7 gray, &8 dark gray, &9 blue,
+#  &a green, &b aqua, &c red, &d light purple, &e yellow, &f white.
+#  &l BOLD, &o italic, &n underline, &m strikethrough, &k obfuscated, &r reset.
+#  HEX: &#9B30FF  |  Gradient: <gradient:#9B30FF:#00E5FF>Text</gradient>
+#  Placeholders: {prefix}, {time}, {seconds}, {mode}, {removed_items},
+#  {removed_units}, {removed_mobs}, {removed_vehicles}, {removed_total},
+#  {elapsed_ms}, {items}, {mobs}, {vehicles}, {next_seconds}, {error}.
+
+[general]
+enabled = true
+
+[language]
+# "en_us" for English (default); "pt_br" for Brazilian Portuguese.
+code = "en_us"
+messagesEnabled = true
+
+[automatic]
+enabled = true
+intervalMinutes = 10
+warningMinutes = [5, 3, 2, 1]
+warningSeconds = [30, 10, 5, 4, 3, 2, 1]
+cleanItems = true
+cleanDistantMobs = true
+cleanVehicles = true
+
+[manual]
+enabled = true
+allowItems = true
+allowMobs = true
+allowVehicles = true
+# Manual clean items/all bypasses the age check (recent drops are cleared).
+ignoreMinimumItemAge = true
+
+[items]
+enabled = true
+# Only the AUTOMATIC normal sweep uses minimumAgeSeconds when nonzero.
+# Emergency always ignores age when emergency.ignoreMinimumItemAge = true.
+# Drops are NOT protected by FTB Chunks or player distance, even in claims.
+minimumAgeSeconds = 30
+# These item IDs are never removed (including during emergencies).
+# Use [] to remove everything, even nether stars.
+protectedIds = ["minecraft:nether_star"]
+
+[mobs]
+enabled = true
+# Regular mob sweep: only vanilla hostiles from removableIds, away from players,
+# and OUTSIDE all FTB Chunks claims. Do not include modded entity IDs.
+minimumDistanceChunks = 6
+removableIds = [
+  "minecraft:zombie", "minecraft:husk", "minecraft:drowned",
+  "minecraft:skeleton", "minecraft:stray", "minecraft:bogged",
+  "minecraft:spider", "minecraft:cave_spider", "minecraft:creeper",
+  "minecraft:slime", "minecraft:magma_cube", "minecraft:phantom",
+  "minecraft:silverfish", "minecraft:endermite", "minecraft:witch"
+]
+
+[mobs.chunkOverload]
+# Independent emergency check by EXACT mob type within each individual chunk.
+# Example: 10 zombies + 30 witches + 10 skeletons = 50 total => remove all
+# 30 ELIGIBLE witches; do NOT remove the 10 zombies or 10 skeletons.
+# Protected witches (named/persistent/etc.) are never removed.
+# Total count considers all Mob entities, but removal is restricted to vanilla
+# hostiles in the safe allow-list above. No players/armor stands/items counted.
+enabled = true
+minimumTotalMobs = 50
+maxPerType = 20
+scanIntervalSeconds = 10
+cooldownSeconds = 30
+# These two bypass options are intentionally enabled for dangerous mob traps.
+# In a claimed chunk, only the overload rule can remove protected-area mobs.
+includePlayerChunks = true
+includeClaimedChunks = true
+
+[vehicles]
+# Empty, unmodified, unnamed vanilla boats/rafts and ordinary minecarts only.
+# Never remove occupied vehicles, any chest/storage/TNT/hopper/spawner carts,
+# named vehicles, modded vehicles, or vehicles on FTB claimed chunks.
+enabled = true
+removeBoats = true
+removeMinecarts = true
+minimumDistanceChunks = 8
+protectedIds = ["minecraft:chest_minecart", "minecraft:hopper_minecart", "minecraft:chest_boat", "minecraft:chest_raft"]
+
+[emergency]
+enabled = true
+# Counts item ENTITIES on the ground (not the units inside each stack).
+globalItemThreshold = 2000
+perChunkItemThreshold = 350
+scanIntervalSeconds = 10
+cooldownSeconds = 60
+ignoreMinimumItemAge = true
+
+[performance]
+maxRemovalsPerTick = 400
+
+[permissions]
+# Server operator levels: 0..4. No client permission config.
+adminOpLevel = 2
+statusOpLevel = 0
+
+[integrations.tab]
+# Optional integration with TAB 5.5.0 (NeoForge) for server placeholders.
+# No TAB jar is required for compiling Raven Cleaner; installed TAB is detected at runtime.
+# Placeholders are available in scoreboard, TAB header/footer and bossbars.
+# Run /cleaner reload to apply these settings; /tab reload also re-registers them.
+enabled = true
+# TAB refreshes placeholders at this interval. Recommended: 1000 ms.
+# Allowed: 250..60000 milliseconds. Snapshot values update once per second.
+refreshIntervalMs = 1000
+# Exposes: %ravencleaner_status%, %ravencleaner_running%
+enableStatus = true
+# Exposes: %ravencleaner_next_cleanup%, %ravencleaner_next_seconds%
+enableCountdown = true
+# Exposes: %ravencleaner_last_drops%, %ravencleaner_last_units%,
+# %ravencleaner_last_mobs%, %ravencleaner_last_vehicles%, %ravencleaner_last_total%
+enableStatistics = true

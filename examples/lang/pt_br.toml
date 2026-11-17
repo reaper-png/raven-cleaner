@@ -1,0 +1,43 @@
+# Raven Cleaner - Português (Brasil)
+# Gerado em world/serverconfig/ravencleaner/lang/pt_br.toml.
+# Para usar: em ravencleaner.toml configure [language] code = "pt_br" e rode /cleaner reload.
+# Cores: &0 preto, &1 azul escuro, &2 verde escuro, &3 ciano escuro,
+# &4 vermelho escuro, &5 roxo escuro, &6 dourado, &7 cinza, &8 cinza escuro,
+# &9 azul, &a verde, &b ciano, &c vermelho, &d roxo, &e amarelo, &f branco.
+# Estilos: &l negrito, &o itálico, &n sublinhado, &m riscado, &k ofuscado, &r reset.
+# HEX: &#9B30FF | Gradiente: <gradient:#9B30FF:#00E5FF>Texto</gradient>
+# Placeholders: {prefix}, {time}, {seconds}, {mode}, {removed_items},
+# {removed_units}, {removed_mobs}, {removed_vehicles}, {removed_total},
+# {elapsed_ms}, {items}, {mobs}, {vehicles}, {next_seconds}, {error}.
+
+prefix = "&l<gradient:#9B30FF:#00E5FF>[Raven Cleaner]</gradient>&r "
+countdown = "{prefix}&7Limpeza do chão em &e{time}&7! Recolha seus itens."
+countdownFinal = "{prefix}&c&lLimpeza em {seconds}..."
+startedAutomatic = "{prefix}&dLimpeza automática iniciada."
+startedManual = "{prefix}&bLimpeza manual iniciada."
+startedEmergency = "{prefix}&c&lATENÇÃO! &r&cExcesso de drops detectado! Limpeza emergencial iniciada."
+startedOverload = "{prefix}&c&lEXCESSO DE MOBS! &r&cLimpando espécies superpopuladas nas chunks."
+finished = "{prefix}&aLimpeza concluída! &f{removed_items} drops (&e{removed_units} itens&f), &e{removed_mobs} mobs&f, &b{removed_vehicles} veículos&f. Total: &b{removed_total}&f. &8({elapsed_ms} ms)"
+failed = "{prefix}&cLimpeza interrompida por segurança: &f{error}"
+status = "{prefix}&7Próxima limpeza em &e{time}&7. Modo: &b{mode}&7."
+analysis = "{prefix}&7Elegíveis agora: &e{items} drops&7, &e{mobs} mobs&7 e &e{vehicles} veículos&7."
+reloaded = "{prefix}&aConfiguração e idioma recarregados com sucesso."
+reloadError = "{prefix}&cFalha ao recarregar: &f{error}"
+paused = "{prefix}&eLimpeza automática pausada (emergências continuam ativas)."
+resumed = "{prefix}&aLimpeza automática retomada."
+alreadyRunning = "{prefix}&cLimpeza indisponível, já existe outra execução ou não foi possível verificar os chunks protegidos."
+modeManual = "manual"
+modeAutomatic = "automática"
+modeEmergency = "emergencial"
+modeOverload = "excesso de mobs"
+minute = "minuto"
+minutes = "minutos"
+second = "segundo"
+seconds = "segundos"
+
+# Integração com TAB: cores & funcionam nos status do scoreboard.
+# Estes textos aparecem nas placeholders do TAB.
+tabStatusActive = "&aAtivo"
+tabStatusPaused = "&ePausado"
+tabStatusRunning = "&bLimpando"
+tabStatusDisabled = "&cDesativado"
